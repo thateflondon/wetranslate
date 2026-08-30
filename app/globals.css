@@ -5,7 +5,7 @@ body {
   width: 100%;
   margin: 0 auto;
   /* background-color: red; */
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 ::-webkit-scrollbar {
@@ -27,12 +27,37 @@ body {
   width: 100%;
   height: 339px;
   /* height: 100%; */
-  border: 1px solid #4D5562;
+  border: 0.5px solid #4D5562;
   /* border: 1px solid #212936; */
   background-color: #394150;
   border-radius: 24px;
+  padding: 24px;
 }
 
 .box.translation {
   background-color: #121826;
+}
+
+.language-selector {
+ display: flex;
+ align-items: flex-start;
+ gap: 12px;
+ max-height: 34px;
+ height: 100%;
+ /* margin-top: 24px; */
+ /* justify-content: space-between;
+ align-items: self-start;
+ gap: 12px; */
+}
+
+.language-selector button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #D2D5DA;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 12px;
+  /* border: 1px solid red; */
+  height: 100%;
 }
