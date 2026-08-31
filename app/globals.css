@@ -12,7 +12,7 @@ body {
     display: none;
 }
 
-.container{
+.translate-form{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,6 +48,11 @@ body {
  /* justify-content: space-between;
  align-items: self-start;
  gap: 12px; */
+}
+
+.language-selector button.active {
+  background-color: #4D5562;
+  border-radius: 12px;
 }
 
 .language-selector button {
