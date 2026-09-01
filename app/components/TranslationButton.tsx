@@ -1,8 +1,12 @@
 import Image from 'next/image';
 
-export default function TranslationButton() {
+interface TranslationButtonProps {
+  onClick: () => void;
+}
+
+export default function TranslationButton({ onClick }: TranslationButtonProps) {
   return (
-    <button className='translate-button'>
+    <button onClick={onClick} className='translate-button'>
         <Image
             src="/sort-alfa.svg"
             alt="Alpha letter"
