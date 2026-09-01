@@ -5,18 +5,25 @@ import ExpandDownButton from "./ExpandDownButton"
 interface LanguageSelectionProps {
   showDetectLanguage?: boolean;
   defaultLanguage?: string;
+  onLanguageChange?: (lang: string) => void;
 }
 
-export default function LanguageSelection({ showDetectLanguage = true, defaultLanguage = "english" }: LanguageSelectionProps) {
+export default function LanguageSelection({ showDetectLanguage = true, defaultLanguage = "english", onLanguageChange }: LanguageSelectionProps) {
 
     const [activeLanguage, setActiveLanguage] = useState(defaultLanguage);
 
+    // handle language change
+    const handleLanguageClick = (lang: string) => {
+      setActiveLanguage(lang);
+      onLanguageChange?.(lang);
+    };
+
   return (
     <div className="language-selector">
-      {showDetectLanguage && <button className={activeLanguage === "detect" ? "active" : ""} onClick={() => setActiveLanguage("detect")}>Detect Language</button>}
-      <button className={activeLanguage === "english" ? "active" : ""} onClick={() => setActiveLanguage("english")}>English</button>
-      <button className={activeLanguage === "french" ? "active" : ""} onClick={() => setActiveLanguage("french")}>French</button>
-      <button className={activeLanguage === "spanish" ? "active" : ""} onClick={() => setActiveLanguage("spanish")}>
+      {showDetectLanguage && <button className={activeLanguage === "detect" ? "active" : ""} onClick={() => handleLanguageClick("detect")}>Detect Language</button>}
+      <button className={activeLanguage === "en" ? "active" : ""} onClick={() => handleLanguageClick("en")}>English</button>
+      <button className={activeLanguage === "fr" ? "active" : ""} onClick={() => handleLanguageClick("fr")}>French</button>
+      <button className={activeLanguage === "es" ? "active" : ""} onClick={() => handleLanguageClick("es")}>
         Spanish{" "}
         <ExpandDownButton/>{" "}
       </button>
