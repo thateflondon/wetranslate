@@ -6,21 +6,26 @@ import CopyText from "./CopyText";
 import TranslationButton from "./TranslationButton";
 
 export default function TranslateForm() {
-  const [translatingText, setTranslatingText] = useState("Hello, how are you");
+  const [translatingText, setTranslatingText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
+  // make langpair dynamic
+  const [sourceLang, setSourceLang] = useState("en");
+  const [targetLang, setTargetLang] = useState("fr");
 
   // Fectching datas from API
   const fetchData = async () => {
     try {
       // Langpair should be dynamic
-      const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(translatingText)}&langpair=en|fr`);
+      const langPair = sourceLang === "detect" ? `auto|${targetLang}` : `${sourceLang}|${targetLang}`;
+
+      const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(translatingText)}&langpair=${langPair}`);
 
       // API response
       const data = await response.json();
-      console.log("Traduction reçue:", data);
+
       // retrieve response
       setTranslatedText(data.responseData.translatedText);
-      console.log("set this in input = " + data.responseData.translatedText);
+      console.log(data);
 
     } catch (error) {
       console.error("Error when fetching data", error);
@@ -28,8 +33,6 @@ export default function TranslateForm() {
   };
 
   const handleTranslate = () => {
-    console.log("j'ai cliqué !");
-    console.log("translatingText = " +translatingText);
     // on click on translate button calls fetchData()
     fetchData();
   };
@@ -40,7 +43,8 @@ export default function TranslateForm() {
         {/* Set english as default text language to be translated && hide language detection button */}
         <LanguageSelection
           showDetectLanguage={true}
-          defaultLanguage="english"
+          defaultLanguage="en"
+          onLanguageChange={setSourceLang}
         />
         <textarea
           name="input-content"
@@ -64,7 +68,8 @@ export default function TranslateForm() {
         {/* Set french as default translated text language && hide language detection button */}
         <LanguageSelection
           showDetectLanguage={false}
-          defaultLanguage="french"
+          defaultLanguage="fr"
+          onLanguageChange={setTargetLang}
         />
         <div className="translated-text-container">
           <span id="translated-text">{translatedText}</span>
