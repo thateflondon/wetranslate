@@ -33,7 +33,7 @@ export default function TranslateForm() {
   };
 
   const handleTranslate = () => {
-    // on click on translate button calls fetchData()
+    // click on translate button calls fetchData()
     fetchData();
   };
 
