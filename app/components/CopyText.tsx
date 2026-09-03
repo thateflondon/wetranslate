@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 interface CopyTextProps {
   text: string;
@@ -8,14 +8,20 @@ interface CopyTextProps {
 export default function CopyText({ text }: CopyTextProps) {
   // used the clipboard API
   const [copied, setCopied] = useState(false);
+  // set auto-reset so the copied button returns to it initial state
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   async function handleCopy() {
     console.log("j'ai cliqué sur le bouton copie du texte");
     try {
       // we copy the with this method that returns a promise  
       await navigator.clipboard.writeText(text);
-      console.log("le txt copié est le suivant = " + text);
       setCopied(true);
+
+      timeoutRef.current = setTimeout(() => {
+        setCopied(false);
+      }, 2000)
+
     } catch (error) {
       console.error("Failed to copy:", error);
     }
