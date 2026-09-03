@@ -57,7 +57,7 @@ export default function TranslateForm() {
         <div className="tranlation-action-button">
           <div className="sound-and-copy-button-container">
             <TextToSpeech />
-            <CopyText />
+            <CopyText text={translatingText} />
           </div>
           <div className="translation-button-container">
             <TranslationButton onClick={handleTranslate} />
@@ -82,7 +82,7 @@ export default function TranslateForm() {
         <div className="tranlation-action-button">
           <div className="sound-and-copy-button-container">
             <TextToSpeech />
-            <CopyText />
+            <CopyText text={translatedText} />
           </div>
           <div className="translation-button-container">
             {/* Hide the translation button on this side of form */}
