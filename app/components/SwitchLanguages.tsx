@@ -1,8 +1,12 @@
 import Image from "next/image";
 
-export default function SwitchLanguages() {
+interface SwitchLanguagesProps {
+  onSwitch?: () => void;
+}
+
+export default function SwitchLanguages({ onSwitch }: SwitchLanguagesProps) {
   return (
-    <button>
+    <button onClick={onSwitch}>
       <Image
         src="/switch-language.svg"
         alt="switch language"

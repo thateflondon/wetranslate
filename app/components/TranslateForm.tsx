@@ -36,6 +36,20 @@ export default function TranslateForm() {
     fetchData();
   };
 
+  const handleSwitch = () => {
+    // temporary variables to avoid overwriting values
+    const tempText = translatingText;
+    const tempLang = sourceLang;
+
+    // reverse the texts
+    setTranslatingText(translatedText);
+    setTranslatedText(tempText);
+
+    // reverse the languages
+    setSourceLang(targetLang);
+    setTargetLang(tempLang);
+  }
+
   return (
     <div className="translate-form">
       <div className="box detection">
@@ -43,6 +57,7 @@ export default function TranslateForm() {
         <LanguageSelection
           showDetectLanguage={true}
           defaultLanguage="en"
+          currentLang={sourceLang} // pass active language on switch
           onLanguageChange={setSourceLang}
           showSwitchLanguage={false} // hide language switch in translating text section
         />
@@ -69,7 +84,10 @@ export default function TranslateForm() {
         <LanguageSelection
           showDetectLanguage={false}
           defaultLanguage="fr"
+          currentLang={targetLang} // pass active language on switch
           onLanguageChange={setTargetLang}
+          showSwitchLanguage={true}
+          onSwitch={handleSwitch}
         />
         <div className="translated-text-container">
           <span id="translated-text">{translatedText}</span>
