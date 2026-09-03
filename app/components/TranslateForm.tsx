@@ -25,7 +25,6 @@ export default function TranslateForm() {
 
       // retrieve response
       setTranslatedText(data.responseData.translatedText);
-      console.log(data);
 
     } catch (error) {
       console.error("Error when fetching data", error);
