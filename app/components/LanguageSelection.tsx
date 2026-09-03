@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExpandDownButton from "./ExpandDownButton";
 import SwitchLanguages from "./SwitchLanguages";
 
@@ -8,14 +8,17 @@ interface LanguageSelectionProps {
   defaultLanguage?: string;
   onLanguageChange?: (lang: string) => void;
   showSwitchLanguage?: boolean;
+  onSwitch?: () => void;
+  currentLang?: string;
 }
 
-export default function LanguageSelection({ showDetectLanguage = true, defaultLanguage = "english", onLanguageChange, showSwitchLanguage = true }: LanguageSelectionProps) {
-  const [activeLanguage, setActiveLanguage] = useState(defaultLanguage);
+export default function LanguageSelection({ showDetectLanguage = true, defaultLanguage = "english", onLanguageChange, showSwitchLanguage, onSwitch, currentLang }: LanguageSelectionProps) {
+//   const [activeLanguage, setActiveLanguage] = useState(currentLang || defaultLanguage);
+    const activeLanguage = currentLang || defaultLanguage;
 
   // handle language change
   const handleLanguageClick = (lang: string) => {
-    setActiveLanguage(lang);
+    // setActiveLanguage(lang);
     onLanguageChange?.(lang);
   };
 
@@ -32,7 +35,7 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
             </button>
         </div>
         <div className="switch-container">
-            {showSwitchLanguage && <SwitchLanguages />}
+            {showSwitchLanguage && <SwitchLanguages onSwitch={onSwitch} />}
         </div>
       </div>
     </div>
