@@ -61,7 +61,7 @@ body {
   margin-top: 48px;
 }
 
-.language-selector {
+.language-container {
  display: flex;
  align-items: flex-start;
  gap: 12px;
@@ -74,12 +74,12 @@ body {
  gap: 12px; */
 }
 
-.language-selector button.active {
+.language-container button.active {
   background-color: #4D5562;
   border-radius: 12px;
 }
 
-.language-selector button {
+.language-container button {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -44,6 +44,7 @@ export default function TranslateForm() {
           showDetectLanguage={true}
           defaultLanguage="en"
           onLanguageChange={setSourceLang}
+          showSwitchLanguage={false} // hide language switch in translating text section
         />
         <textarea
           name="input-content"
@@ -73,11 +74,6 @@ export default function TranslateForm() {
         <div className="translated-text-container">
           <span id="translated-text">{translatedText}</span>
         </div>
-        {/* <textarea
-          name="output-content"
-          id="outputContent"
-          placeholder="Bonjour, comment allez-vous ?"
-        /> */}
         <div className="tranlation-action-button">
           <div className="sound-and-copy-button-container">
             <TextToSpeech />
