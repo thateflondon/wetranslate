@@ -5,8 +5,6 @@ body {
   width: 100%;
   margin: 0 auto;
   background-color: #040713;
-  /* background-color: red; */
-  /* border: 1px solid red; */
 }
 
 ::-webkit-scrollbar {
@@ -20,7 +18,15 @@ body {
   max-width: 1206px;
   width: 100%;
   margin: 0 72px;
-  /* border: 3px solid green; */
+
+  @media (max-width: 1024px){
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 412px){
+    margin: 0 24px;
+  }
 }
 
 .box{
@@ -105,10 +111,6 @@ body {
 .sound-and-copy-button-container {
   max-width: 80px;
   width: 100%;
-}
-
-.sort-alpha-image {
-
 }
 
 .translate-button {
