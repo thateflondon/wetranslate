@@ -11,6 +11,8 @@ export default function TranslateForm() {
   // make langpair dynamic
   const [sourceLang, setSourceLang] = useState("en");
   const [targetLang, setTargetLang] = useState("fr");
+  // set textarea characters counter
+  const [count, setCount] = useState(0);
 
   // Fectching datas from API
   const fetchData = async () => {
@@ -48,6 +50,10 @@ export default function TranslateForm() {
     // reverse the languages
     setSourceLang(targetLang);
     setTargetLang(tempLang);
+  }
+
+  const charactersCount = (e) => {
+    console.log("COUNT =" + e.target.value.length);
   }
 
   return (
