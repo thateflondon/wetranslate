@@ -11,8 +11,6 @@ export default function TranslateForm() {
   // make langpair dynamic
   const [sourceLang, setSourceLang] = useState("en");
   const [targetLang, setTargetLang] = useState("fr");
-  // set textarea characters counter
-  const [count, setCount] = useState(0);
 
   // Fectching datas from API
   const fetchData = async () => {
@@ -52,10 +50,6 @@ export default function TranslateForm() {
     setTargetLang(tempLang);
   }
 
-  const charactersCount = (e) => {
-    console.log("COUNT =" + e.target.value.length);
-  }
-
   return (
     <div className="translate-form">
       <div className="box detection">
@@ -74,7 +68,7 @@ export default function TranslateForm() {
           onChange={(e) => setTranslatingText(e.target.value)}
           maxLength={500}
         />
-        <div className="counter-container">19/500</div>
+        <div className="counter-container">{translatingText.length}/500</div>
         <div className="tranlation-action-button">
           <div className="sound-and-copy-button-container">
             <TextToSpeech />
