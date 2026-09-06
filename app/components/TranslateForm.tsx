@@ -90,15 +90,7 @@ export default function TranslateForm() {
           onSwitch={handleSwitch}
         />
         <div className="translated-text-container">
-          {/* <span id="translated-text">{translatedText}</span> */}
-          {/* set the translation output to be render also a textarea to avoid text overlaping */}
-          <textarea
-          name="output-content"
-          id="outputContent"
-          value={translatedText}
-          // onChange={(e) => setTranslatingText(e.target.value)}
-          // maxLength={500}
-        />
+          <span id="translated-text">{translatedText}</span>
         </div>
         <div className="tranlation-action-button">
           <div className="sound-and-copy-button-container">

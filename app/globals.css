@@ -171,6 +171,12 @@ body {
   margin-bottom: 12px;
 }
 
+#translated-text {
+  display: block;
+  overflow-y: auto;
+  height: inherit;
+}
+
 /* screens <= 240px */
 @media (max-width: 240px) {
   .language-container {
