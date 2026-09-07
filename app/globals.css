@@ -228,3 +228,10 @@ body {
     margin-bottom: 10px;
   }
 }
+
+@media (min-width: 414.1px) and (max-width: 430px) {
+  .language-container {
+    flex-wrap: wrap;
+    max-height: 90px;
+  }
+}
