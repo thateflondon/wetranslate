@@ -53,7 +53,7 @@ body {
   }
 
   &:first-child {
-    @media (max-width: 412px) {
+    @media (max-width: 480px) {
       height: 385px;
     }
   }
@@ -103,9 +103,10 @@ body {
 
 .language-container {
  display: flex;
+ flex-wrap: wrap;
  align-items: flex-start;
  gap: 12px;
- max-height: 34px;
+ /* max-height: 34px; */
  height: 100%;
  margin-bottom: 14px;
 }
@@ -121,8 +122,10 @@ body {
   align-items: center;
   color: #D2D5DA;
   font-size: 14px;
+  /* font-size: clamp(11px, calc((14 / 480) * 100vw), 14px); */
   font-weight: bold;
   padding: 6px 12px;
+  /* padding: clamp(4px, calc((6 / 480) * 100vw), 6px) clamp(8px, calc((12 / 480) * 100vw), 12px); */
   height: 100%;
   box-sizing: border-box;
 }
