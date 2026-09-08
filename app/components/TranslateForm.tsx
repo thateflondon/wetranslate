@@ -71,7 +71,7 @@ export default function TranslateForm() {
         <div className="counter-container">{translatingText.length}/500</div>
         <div className="tranlation-action-button">
           <div className="sound-and-copy-button-container">
-            <TextToSpeech />
+            <TextToSpeech text={translatingText} lang={sourceLang} />
             <CopyText text={translatingText} />
           </div>
           <div className="translation-button-container">
@@ -94,7 +94,7 @@ export default function TranslateForm() {
         </div>
         <div className="tranlation-action-button">
           <div className="sound-and-copy-button-container">
-            <TextToSpeech />
+            <TextToSpeech text={translatedText} lang={targetLang} />
             <CopyText text={translatedText} />
           </div>
           <div className="translation-button-container">
