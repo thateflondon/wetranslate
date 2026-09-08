@@ -53,13 +53,17 @@ body {
   }
 
   &:first-child {
-    @media (max-width: 480px) {
+    @media (max-width: 512px) {
       height: 385px;
     }
   }
 }
 
 .box {
+  &:first-child .language-container>button:first-child {
+    white-space: nowrap;
+  }
+
   &.translation {
     background-color: #121826;
   }
@@ -103,10 +107,8 @@ body {
 
 .language-container {
  display: flex;
- flex-wrap: wrap;
  align-items: flex-start;
  gap: 12px;
- /* max-height: 34px; */
  height: 100%;
  margin-bottom: 14px;
 }
@@ -122,10 +124,8 @@ body {
   align-items: center;
   color: #D2D5DA;
   font-size: 14px;
-  /* font-size: clamp(11px, calc((14 / 480) * 100vw), 14px); */
   font-weight: bold;
   padding: 6px 12px;
-  /* padding: clamp(4px, calc((6 / 480) * 100vw), 6px) clamp(8px, calc((12 / 480) * 100vw), 12px); */
   height: 100%;
   box-sizing: border-box;
 }
@@ -180,8 +180,8 @@ body {
   height: inherit;
 }
 
-/* screens <= 240px */
-@media (max-width: 240px) {
+/* screens <= 360px need this as wrapping items cause display issues over 360px breakpoint */
+@media (max-width: 359px) {
   .language-container {
     flex-wrap: wrap;
     max-height: 90px;
@@ -190,6 +190,10 @@ body {
       font-size: 10px;
       padding: 4px 10px;
     }
+  }
+
+  .tranlation-action-button {
+    gap: 3px;
   }
 
   .box textarea, .translated-text-container {
@@ -208,7 +212,7 @@ body {
 
   .sound-and-copy-button-container {
     height: 27px;
-    gap: 5px;
+    gap: 2px;
     width: unset;
   }
 
@@ -220,11 +224,6 @@ body {
 
 /* language option display on iphone 6/7/8 Plus and screen = 414px */
 @media (min-width: 412.1px) and (max-width: 414px) {
-  .detection {
-    textarea {
-      max-height: 114px;
-    }
-  }
   .language-container {
     flex-wrap: wrap;
     max-height: fit-content;
@@ -232,9 +231,20 @@ body {
   }
 }
 
-@media (min-width: 414.1px) and (max-width: 430px) {
+@media (min-width: 414.1px) and (max-width: 512px) {
   .language-container {
     flex-wrap: wrap;
     max-height: 90px;
+  }
+}
+
+@media (max-width: 220px) {
+  .translate-button {
+    img {
+      display: none;
+    }
+  }
+  .language-container {
+    gap: 1.8692vw;
   }
 }
