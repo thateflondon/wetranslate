@@ -16,9 +16,20 @@ export default function TranslateForm() {
   const fetchData = async () => {
     try {
       // Langpair should be dynamic
-      const langPair = sourceLang === "detect" ? `auto|${targetLang}` : `${sourceLang}|${targetLang}`;
+      // const langPair = sourceLang === "detect" ? `auto|${targetLang}` : `${sourceLang}|${targetLang}`;
 
-      const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(translatingText)}&langpair=${langPair}`);
+      // const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(translatingText)}&langpair=${langPair}`);
+
+      const response = await fetch("/api/translate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          q: translatingText,
+          langpair: `${sourceLang}|${targetLang}`,
+        }),
+      });
 
       // API response
       const data = await response.json();
