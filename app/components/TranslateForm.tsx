@@ -20,16 +20,19 @@ export default function TranslateForm() {
 
       // const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(translatingText)}&langpair=${langPair}`);
 
-      const response = await fetch("/api/translate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          q: translatingText,
-          langpair: `${sourceLang}|${targetLang}`,
-        }),
-      });
+      // const response = await fetch("/api/translate", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     q: translatingText,
+      //     langpair: `${sourceLang}|${targetLang}`,
+      //   }),
+      // });
+
+      const response = await fetch(`/api/translate?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`);
+
 
       // API response
       const data = await response.json();
