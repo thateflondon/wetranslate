@@ -37,16 +37,14 @@ export default function CopyText({ text }: CopyTextProps) {
   }, []);
 
   return (
-    <>
-      <button className="w-full h-full" onClick={handleCopy}>
-        <Image
-          src="/copy-text.svg"
-          alt="Copy text"
-          width={36}
-          height={36}
-          className={`copy-text w-full h-full ${copied ? "brightness-180 transition-all duration-300" : ""}`}
-        />
-      </button>
-    </>
+    <button className="w-full h-full" onClick={handleCopy}>
+      <Image
+        src="/copy-text.svg"
+        alt="Copy text"
+        width={36}
+        height={36}
+        className={`copy-text w-full h-full ${copied ? "brightness-180 transition-all duration-300" : ""}`}
+      />
+    </button>
   );
 }
