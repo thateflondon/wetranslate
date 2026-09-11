@@ -19,6 +19,35 @@ export default function TranslateForm() {
       // const langPair = sourceLang === "detect" ? `auto|${targetLang}` : `${sourceLang}|${targetLang}`;
 
       // const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(translatingText)}&langpair=${langPair}`);
+      
+      // Fix language detection using an API (https://detectlanguage.com/ 1k request/day on free tier)
+      const detectLanguage = async (text: string) => {
+        try {
+          const response = await fetch(
+            "/api/detect-language",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ text }),
+            },
+          );
+          const data = await response.json();
+          console.log("array from detectLanguage fct = ", data);
+          console.log("detected language is = ", data.data.detections[0].language)
+          return data.data.detections[0].language;
+        } catch (error) {
+          return "en";
+        }
+      };
+
+      let detectedLang = sourceLang;
+      
+      if (sourceLang === "detect") {
+        detectedLang = await detectLanguage(translatingText);
+        // update UI
+        console.log("detectedLang = " + detectedLang);
+        setSourceLang(detectedLang);
+      }
 
       // const response = await fetch("/api/translate", {
       //   method: "POST",
@@ -31,15 +60,15 @@ export default function TranslateForm() {
       //   }),
       // });
 
-      const response = await fetch(`/api/translate?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`);
-
+      const response = await fetch(`https://api.mymemory.translated.net/get?q=${translatingText}&langpair=${detectedLang}|${targetLang}`);
 
       // API response
       const data = await response.json();
 
       // retrieve response
       setTranslatedText(data.responseData.translatedText);
-
+      console.log("Traduction = ", data.responseData.translatedText);
+      
     } catch (error) {
       console.error("Error when fetching data", error);
     }
