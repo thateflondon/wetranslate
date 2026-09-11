@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Avoid CORS errors
 export async function POST(request: NextRequest) {
   try {
     const { q, langpair } = await request.json();

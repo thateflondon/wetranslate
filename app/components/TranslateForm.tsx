@@ -23,6 +23,7 @@ export default function TranslateForm() {
       // Fix language detection using an API (https://detectlanguage.com/ 1k request/day on free tier)
       const detectLanguage = async (text: string) => {
         try {
+          // send the text to API route for detection
           const response = await fetch(
             "/api/detect-language",
             {
@@ -32,42 +33,29 @@ export default function TranslateForm() {
             },
           );
           const data = await response.json();
-          console.log("array from detectLanguage fct = ", data);
-          console.log("detected language is = ", data.data.detections[0].language)
+          // return the detected language
           return data.data.detections[0].language;
         } catch (error) {
           return "en";
         }
       };
 
+      // init detected language
       let detectedLang = sourceLang;
-      
+      // detect the source language from the "Detect language" boutton
       if (sourceLang === "detect") {
         detectedLang = await detectLanguage(translatingText);
         // update UI
-        console.log("detectedLang = " + detectedLang);
         setSourceLang(detectedLang);
       }
-
-      // const response = await fetch("/api/translate", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     q: translatingText,
-      //     langpair: `${sourceLang}|${targetLang}`,
-      //   }),
-      // });
 
       const response = await fetch(`https://api.mymemory.translated.net/get?q=${translatingText}&langpair=${detectedLang}|${targetLang}`);
 
       // API response
       const data = await response.json();
 
-      // retrieve response
+      // retrieve response / translated text
       setTranslatedText(data.responseData.translatedText);
-      console.log("Traduction = ", data.responseData.translatedText);
       
     } catch (error) {
       console.error("Error when fetching data", error);
@@ -139,10 +127,6 @@ export default function TranslateForm() {
           <div className="sound-and-copy-button-container">
             <TextToSpeech text={translatedText} lang={targetLang} />
             <CopyText text={translatedText} />
-          </div>
-          <div className="translation-button-container">
-            {/* Hide the translation button on this side of form */}
-            {/* <TranslationButton /> */}
           </div>
         </div>
       </div>
