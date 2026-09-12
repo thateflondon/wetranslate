@@ -33,6 +33,10 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
                 Spanish{" "}
                 <ExpandDownButton/>{" "}
             </button>
+            <select name="" id="">
+              <option value="">IT</option>
+              <option value="">DE</option>
+            </select>
         </div>
         <div className="switch-container">
             {showSwitchLanguage && <SwitchLanguages onSwitch={onSwitch} />}
