@@ -1,29 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Languages ​​supported by MyMemory
-const MYMEMORY_LANGUAGES = [
-  { code: "en", label: "English" },
-  { code: "fr", label: "French" },
-  { code: "es", label: "Spanish" },
-  { code: "it", label: "Italian" },
-  { code: "de", label: "German" },
-  { code: "pt", label: "Portuguese" },
-  { code: "ru", label: "Russian" },
-  { code: "zh", label: "Chinese" },
-  { code: "ja", label: "Japanese" },
-  { code: "ar", label: "Arabic" },
-  { code: "nl", label: "Dutch" },
-  { code: "pl", label: "Polish" },
-  { code: "sv", label: "Swedish" },
-  { code: "tr", label: "Turkish" },
-  { code: "ko", label: "Korean" },
-];
-
-// returns available languages
-export async function GET() {
-  return NextResponse.json({ languages: MYMEMORY_LANGUAGES });
-} 
-
 // Avoid CORS errors
 export async function POST(request: NextRequest) {
   try {
