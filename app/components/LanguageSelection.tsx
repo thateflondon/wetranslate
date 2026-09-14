@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import ExpandDownButton from "./ExpandDownButton";
 import SwitchLanguages from "./SwitchLanguages";
 
 interface Language {
