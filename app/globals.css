@@ -106,16 +106,35 @@ body {
 }
 
 .language-container {
- display: flex;
- align-items: flex-start;
- gap: 12px;
- height: 100%;
- margin-bottom: 14px;
-}
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  height: 100%;
+  margin-bottom: 14px;
 
-.language-container button.active {
-  background-color: #4D5562;
-  border-radius: 12px;
+  select {
+    /* outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none; */
+    appearance: none;
+    background-image: url('/Expand_down.svg');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 28px;
+  }
+
+  button.active,
+  select.active {
+    background-color: #4D5562;
+    border-radius: 12px;
+    outline: none;
+  }
+
+  select {
+    /* padding: 0; */
+  }
 }
 
 .language-container {

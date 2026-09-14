@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import ExpandDownButton from "./ExpandDownButton";
 import SwitchLanguages from "./SwitchLanguages";
-import { error } from "console";
 
 interface Language {
   code: string;
@@ -23,7 +22,7 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
   // state for main buttons (EN, FR, Detect)
   const activeLanguage = currentLang || defaultLanguage;
   // separate state for select (ES by default)
-  const [selectedLanguage, setSelectedLanguages] = useState("es"); 
+  const [selectedLanguage, setSelectedLanguage] = useState("es"); 
   const [languages, setLanguages] = useState<Language[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -55,7 +54,7 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
 
   // handle language change for the select
   const handleSelectChange = (lang: string) => {
-    setSelectedLanguages?.(lang);
+    setSelectedLanguage(lang);
     onLanguageChange?.(lang);
   };
 
@@ -75,7 +74,7 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
             ) : (
               <select
               name="other languages"
-              className={activeLanguage === "{code}" ? "active" : ""}
+              className={!["en", "fr", "detect"].includes(activeLanguage) ? "active" : ""}
               value={selectedLanguage}
               onChange={(e) => handleSelectChange(e.target.value)}
               disabled={loading}
