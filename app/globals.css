@@ -118,16 +118,18 @@ body {
   border-radius: 12px;
 }
 
-.language-container button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #D2D5DA;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 6px 12px;
-  height: 100%;
-  box-sizing: border-box;
+.language-container {
+  button, select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #D2D5DA;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 12px;
+    height: 100%;
+    box-sizing: border-box;
+  }
 }
 
 #inputContent {
