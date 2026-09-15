@@ -14,6 +14,13 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({ q: text }),
     });
 
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: "Detection service unavailable" },
+        { status: 503 }
+      );
+    }
+
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {

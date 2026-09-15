@@ -25,6 +25,13 @@ export async function POST(request: NextRequest) {
       body: formData.toString(),
     });
 
+    if (!response.ok) {
+      return NextResponse.json(
+        { error: "Translation service unavailable" },
+        { status: 503 }
+      );
+    }
+
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {

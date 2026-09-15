@@ -15,12 +15,7 @@ export default function TranslateForm() {
   // Fectching datas from API
   const fetchData = async () => {
     try {
-      // Langpair should be dynamic
-      // const langPair = sourceLang === "detect" ? `auto|${targetLang}` : `${sourceLang}|${targetLang}`;
-
-      // const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(translatingText)}&langpair=${langPair}`);
-      
-      // Fix language detection using an API (https://detectlanguage.com/ 1k request/day on free tier)
+      // Fix language detection on button "Detect Language" using an API (https://detectlanguage.com/ 1k request/day on free tier)
       const detectLanguage = async (text: string) => {
         try {
           // send the text to API route for detection
@@ -32,6 +27,11 @@ export default function TranslateForm() {
               body: JSON.stringify({ text }),
             },
           );
+
+          if (!response.ok) {
+            throw new Error(`Language detection failed: ${response.status}`);
+          }
+
           const data = await response.json();
           // return the detected language
           return data.data.detections[0].language;
@@ -40,7 +40,7 @@ export default function TranslateForm() {
         }
       };
 
-      // init detected language
+      // init language detection
       let detectedLang = sourceLang;
       // detect the source language from the "Detect language" boutton
       if (sourceLang === "detect") {
@@ -50,6 +50,10 @@ export default function TranslateForm() {
       }
 
       const response = await fetch(`https://api.mymemory.translated.net/get?q=${translatingText}&langpair=${detectedLang}|${targetLang}`);
+
+      if (!response.ok) {
+        throw new Error(`Translation failed: ${response.status}`);
+      }
 
       // API response
       const data = await response.json();

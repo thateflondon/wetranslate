@@ -13,7 +13,7 @@ export default function CopyText({ text }: CopyTextProps) {
 
   async function handleCopy() {
     try {
-      // we copy the with this method that returns a promise
+      // we copy text with this method that returns a promise
       await navigator.clipboard.writeText(text);
       setCopied(true);
 

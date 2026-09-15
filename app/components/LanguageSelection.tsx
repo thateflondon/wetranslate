@@ -26,11 +26,14 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // execute once
+  // execute once and fetch data
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
         const results = await fetch("/api/languages");
+        if (!results.ok) {
+          throw new Error(`Failed to load languages: ${results.status}`);
+        }
         const data = await results.json();
         setLanguages(data.languages);
       } catch (error) {
