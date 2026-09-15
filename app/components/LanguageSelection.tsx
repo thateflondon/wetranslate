@@ -17,23 +17,19 @@ interface LanguageSelectionProps {
 }
 
 export default function LanguageSelection({ showDetectLanguage = true, defaultLanguage = "english", onLanguageChange, showSwitchLanguage, onSwitch, currentLang }: LanguageSelectionProps) {
-//   const [activeLanguage, setActiveLanguage] = useState(currentLang || defaultLanguage);
   // state for main buttons (EN, FR, Detect)
-  const activeLanguage = currentLang || defaultLanguage;
-  // separate state for select (ES by default)
-  const [selectedLanguage, setSelectedLanguage] = useState("es"); 
+  const activeLanguage = currentLang || defaultLanguage; 
   const [languages, setLanguages] = useState<Language[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-
+  // execute once
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
         const results = await fetch("/api/languages");
         const data = await results.json();
         setLanguages(data.languages);
-        console.log("data =", data.languages);
       } catch (error) {
         setError(true);
         console.log("Error fetching languages list", error);
@@ -47,13 +43,11 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
 
   // handle language change
   const handleLanguageClick = (lang: string) => {
-    // setActiveLanguage(lang);
     onLanguageChange?.(lang);
   };
 
   // handle language change for the select
   const handleSelectChange = (lang: string) => {
-    setSelectedLanguage(lang);
     onLanguageChange?.(lang);
   };
 
@@ -72,9 +66,9 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
               <span className="text-red-500 text-sm">Unavailable</span>
             ) : (
               <select
-              name="other languages"
+              name="other-languages"
               className={!["en", "fr", "detect"].includes(activeLanguage) ? "active" : ""}
-              value={selectedLanguage}
+              value={currentLang || "es"}
               onChange={(e) => handleSelectChange(e.target.value)}
               disabled={loading}
               >

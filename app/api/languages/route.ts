@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 
 // Languages ​​supported by MyMemory
 const MYMEMORY_LANGUAGES: { code: string; label: string }[] = [
-  { code: "en", label: "English" },
-  { code: "fr", label: "French" },
   { code: "es", label: "Spanish" },
   { code: "it", label: "Italian" },
   { code: "de", label: "German" },
@@ -21,18 +19,8 @@ const MYMEMORY_LANGUAGES: { code: string; label: string }[] = [
 
 // returns available languages
 export async function GET() {
-  try {
-    const availability = await fetch(
-      "https://api.mymemory.translated.net/get?q=test&langpair=en|fr",
-      { cache: "no-store" },
-    );
-    if (!availability.ok) throw new Error("API unreachable");
-  } catch {
-    return NextResponse.json(
-      { error: "Translation API unavailable" },
-      { status: 503 },
-    );
-  }
+// initially, we were doing a translation test to verify that the MyMemory API is reachable
+// we're just going to return the static list directly
 
   return NextResponse.json({ languages: MYMEMORY_LANGUAGES });
 } 

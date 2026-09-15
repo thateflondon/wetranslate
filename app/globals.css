@@ -113,10 +113,7 @@ body {
   margin-bottom: 14px;
 
   select {
-    /* outline: none;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none; */
+    /* this implementation is not dynamic */
     appearance: none;
     background-image: url('/Expand_down.svg');
     background-repeat: no-repeat;
@@ -130,10 +127,6 @@ body {
     background-color: #4D5562;
     border-radius: 12px;
     outline: none;
-  }
-
-  select {
-    /* padding: 0; */
   }
 }
 
