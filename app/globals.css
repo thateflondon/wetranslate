@@ -112,16 +112,6 @@ body {
   height: 100%;
   margin-bottom: 14px;
 
-  select {
-    /* this implementation is not dynamic */
-    appearance: none;
-    background-image: url('/Expand_down.svg');
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    background-size: 16px;
-    padding-right: 28px;
-  }
-
   button.active,
   select.active {
     background-color: #4D5562;
@@ -142,6 +132,17 @@ body {
     height: 100%;
     box-sizing: border-box;
     cursor: pointer;
+  }
+}
+
+.switch-container button,
+.translate-button,
+.sound-and-copy-button-container button {
+  cursor: pointer;
+  transition: all 300ms;
+
+  &:hover {
+    filter: brightness(1.8);
   }
 }
 
