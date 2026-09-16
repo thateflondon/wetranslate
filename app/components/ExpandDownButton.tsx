@@ -7,7 +7,7 @@ export default function ExpandDownButton() {
       alt="Arrow down"
       width={16}
       height={16}
-      className="w-full h-full ml-[4px]"
+      className="w-full h-full"
     />
   );
 }

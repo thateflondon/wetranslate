@@ -13,7 +13,7 @@ export default function CopyText({ text }: CopyTextProps) {
 
   async function handleCopy() {
     try {
-      // we copy the with this method that returns a promise
+      // we copy text with this method that returns a promise
       await navigator.clipboard.writeText(text);
       setCopied(true);
 
@@ -37,16 +37,14 @@ export default function CopyText({ text }: CopyTextProps) {
   }, []);
 
   return (
-    <>
-      <button className="w-full h-full" onClick={handleCopy}>
-        <Image
-          src="/copy-text.svg"
-          alt="Copy text"
-          width={36}
-          height={36}
-          className={`copy-text w-full h-full ${copied ? "brightness-180 transition-all duration-300" : ""}`}
-        />
-      </button>
-    </>
+    <button className="w-full h-full" onClick={handleCopy}>
+      <Image
+        src="/copy-text.svg"
+        alt="Copy text"
+        width={36}
+        height={36}
+        className={`copy-text w-full h-full ${copied ? "brightness-180 transition-all duration-300" : ""}`}
+      />
+    </button>
   );
 }
