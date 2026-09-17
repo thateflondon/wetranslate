@@ -8,7 +8,6 @@ export default function Background() {
       fill
       className="object-cover -z-10"
       priority
-      quality={100}
     />
   );
 }
