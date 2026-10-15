@@ -37,7 +37,7 @@ export default function CopyText({ text }: CopyTextProps) {
   }, []);
 
   return (
-    <button className="w-full h-full" onClick={handleCopy}>
+    <button className="w-full h-full cursor-pointer transition-all duration-300 hover:brightness-[1.8]" onClick={handleCopy}>
       <Image
         src="/copy-text.svg"
         alt="Copy text"

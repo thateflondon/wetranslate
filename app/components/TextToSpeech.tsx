@@ -49,7 +49,7 @@ export default function TextToSpeech({text, lang}: TextToSpeechProps) {
   }
 
   return (
-    <button className='w-full h-full' onClick={handleSpeaking}>
+    <button className='w-full h-full cursor-pointer transition-all duration-300 hover:brightness-[1.8]' onClick={handleSpeaking}>
       <Image
         src="/sound.svg"
         alt="Read text"

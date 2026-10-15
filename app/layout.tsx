@@ -19,7 +19,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${dmSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>{children}</body>
+      <body className="max-w-[1350px] w-full mx-auto bg-[#040713] min-h-full flex flex-col font-sans [&::-webkit-scrollbar]:hidden" suppressHydrationWarning>{children}</body>
     </html>
   );
 }

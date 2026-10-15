@@ -79,17 +79,17 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
   };
 
   return (
-    <div className="language-selector">
-      <div className="language-selector-container flex center justify-between">
-        <div className="language-container">
-            {showDetectLanguage && <button className={`language-choice ${activeLanguage === "detect" ? "active" : ""}`} onClick={() => handleLanguageClick("detect")}>Detect Language</button>}
-            <button className={`language-choice ${activeLanguage === "en" ? "active" : ""}`} onClick={() => handleLanguageClick("en")}>English</button>
-            <button className={`language-choice ${activeLanguage === "fr" ? "active" : ""}`} onClick={() => handleLanguageClick("fr")}>French</button>
+    <div>
+      <div className="flex center justify-between">
+        <div className="flex items-start gap-3 h-full mb-[14px] max-[359px]:flex-wrap max-[359px]:max-h-[90px] min-[412.1px]:max-[414px]:flex-wrap min-[412.1px]:max-[414px]:max-h-fit min-[412.1px]:max-[414px]:mb-[10px] min-[414.1px]:max-[512px]:flex-wrap min-[414.1px]:max-[512px]:max-h-[90px] max-[220px]:gap-[1.8692vw]">
+            {showDetectLanguage && <button className={`flex justify-center items-center text-[#D2D5DA] text-sm font-bold px-3 py-1.5 h-full box-border cursor-pointer max-[359px]:text-[10px] max-[359px]:px-2.5 max-[359px]:py-1 ${activeLanguage === "detect" ? "bg-[#4D5562] rounded-xl outline-none" : ""}`} onClick={() => handleLanguageClick("detect")}>Detect Language</button>}
+            <button className={`flex justify-center items-center text-[#D2D5DA] text-sm font-bold px-3 py-1.5 h-full box-border cursor-pointer max-[359px]:text-[10px] max-[359px]:px-2.5 max-[359px]:py-1 ${activeLanguage === "en" ? "bg-[#4D5562] rounded-xl outline-none" : ""}`} onClick={() => handleLanguageClick("en")}>English</button>
+            <button className={`flex justify-center items-center text-[#D2D5DA] text-sm font-bold px-3 py-1.5 h-full box-border cursor-pointer max-[359px]:text-[10px] max-[359px]:px-2.5 max-[359px]:py-1 ${activeLanguage === "fr" ? "bg-[#4D5562] rounded-xl outline-none" : ""}`} onClick={() => handleLanguageClick("fr")}>French</button>
 
             {/* create dropdown button */}
-            <div className="dropdown" ref={dropdownRef}>
+            <div className="relative inline-block" ref={dropdownRef}>
               <button
-                className={`language-choice ${!["en", "fr", "detect"].includes(activeLanguage) ? "active" : ""}`}
+                className={`flex justify-center items-center gap-1 text-[#D2D5DA] text-sm font-bold px-3 py-1.5 h-full box-border cursor-pointer max-[359px]:text-[10px] max-[359px]:px-2.5 max-[359px]:py-1 ${!["en", "fr", "detect"].includes(activeLanguage) ? "bg-[#4D5562] rounded-xl outline-none" : ""}`}
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 {getCurrentLabel()}
@@ -97,11 +97,11 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
               </button>
 
               {dropdownOpen && !error && !loading && (
-                <div className="dropdown-menu">
+                <div className="absolute top-full left-0 mt-1 bg-[#394150] border-[0.5px] border-[#4D5562] rounded-xl min-w-fit max-h-[250px] overflow-y-auto z-[1000] shadow-[0_4px_6px_rgba(0,0,0,0.3)] [&::-webkit-scrollbar]:hidden">
                   {languages.map(({ code, label }) => (
                     <div
                       key={code}
-                      className="dropdown-item"
+                      className="py-2.5 px-4 text-[#D2D5DA] text-sm font-bold cursor-pointer transition-colors duration-200 hover:bg-[#4D5562]"
                       onClick={() => handleSelectChange(code)}
                     >
                       {label}
@@ -113,7 +113,7 @@ export default function LanguageSelection({ showDetectLanguage = true, defaultLa
 
             {error && <span className="text-red-500 text-sm">Unavailable</span>}
         </div>
-        <div className="switch-container">
+        <div>
             {showSwitchLanguage && <SwitchLanguages onSwitch={onSwitch} />}
         </div>
       </div>

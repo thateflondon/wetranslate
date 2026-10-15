@@ -108,9 +108,9 @@ export default function TranslateForm() {
   }
 
   return (
-    <div className="translate-form-container">
-      <div className="translate-form">
-        <div className="box detection">
+    <div>
+      <div className="flex justify-between items-center gap-3 max-w-[1206px] w-full mx-auto lg:max-xl:w-[calc(100%-144px)] max-lg:flex-col max-lg:max-w-[880px] max-lg:w-full max-[412px]:w-[calc(100%-24px)] min-[412.1px]:max-[992px]:w-[calc(100%-48px)]">
+        <div className="max-w-[597px] w-full h-[339px] border-[0.5px] border-[#4D5562] bg-[#394150] rounded-3xl p-6 max-lg:max-w-[880px] max-[512px]:h-[385px] [&>*:first-child_.language-container>button:first-child]:whitespace-nowrap min-[240.1px]:max-[412px]:[&_.language-container]:flex-wrap min-[240.1px]:max-[412px]:[&_.language-container]:max-h-20">
           {/* Set english as default text language to be translated && hide language detection button */}
           <LanguageSelection
             showDetectLanguage={true}
@@ -125,19 +125,20 @@ export default function TranslateForm() {
             value={translatingText}
             onChange={(e) => setTranslatingText(e.target.value)}
             maxLength={500}
+            className="max-w-[549px] w-full max-h-[158px] h-full pt-5 text-base font-bold text-[#F9FAFB] border-t border-[#4d5562] resize-none outline-none max-lg:max-w-[832px] max-lg:w-full max-[412px]:pt-6"
           />
-          <div className="counter-container">{translatingText.length}/500</div>
-          <div className="tranlation-action-button">
-            <div className="sound-and-copy-button-container">
+          <div className="flex justify-end items-center text-[#D2D5DA] text-xs font-medium mb-3 max-[359px]:text-[10px] max-[359px]:mb-10">{translatingText.length}/500</div>
+          <div className="flex justify-between items-end max-[359px]:gap-[3px]">
+            <div className="flex justify-center items-center gap-2 max-w-20 w-full max-[359px]:h-[27px] max-[359px]:gap-[2px] max-[359px]:w-auto">
               <TextToSpeech text={translatingText} lang={sourceLang} />
               <CopyText text={translatingText} />
             </div>
-            <div className="translation-button-container">
+            <div>
               <TranslationButton onClick={handleTranslate} />
             </div>
           </div>
         </div>
-        <div className="box translation">
+        <div className="max-w-[597px] w-full h-[339px] border-[0.5px] border-[#4D5562] bg-[#121826] rounded-3xl p-6 max-lg:max-w-[880px]">
           {/* Set french as default translated text language && hide language detection button */}
           <LanguageSelection
             showDetectLanguage={false}
@@ -147,18 +148,18 @@ export default function TranslateForm() {
             showSwitchLanguage={true}
             onSwitch={handleSwitch}
           />
-          <div className="translated-text-container">
-            <span id="translated-text">{translatedText}</span>
+          <div className="max-w-[549px] w-full max-h-[158px] h-full pt-5 text-base font-bold text-[#F9FAFB] border-t border-[#394150] resize-none outline-none max-lg:max-w-[832px] max-lg:w-full max-[412px]:pt-6">
+            <span className="block overflow-y-auto h-full">{translatedText}</span>
           </div>
-          <div className="tranlation-action-button">
-            <div className="sound-and-copy-button-container">
+          <div className="flex justify-between items-end mt-12">
+            <div className="flex justify-center items-center gap-2 max-w-20 w-full max-[359px]:h-[27px] max-[359px]:gap-[2px] max-[359px]:w-auto">
               <TextToSpeech text={translatedText} lang={targetLang} />
               <CopyText text={translatedText} />
             </div>
           </div>
         </div>
       </div>
-      <div className="error">
+      <div>
           {errorEmpty && <p className="pt-[20px] text-center text-sm font-medium text-[#F87171] transition-opacity duration-300 ease-in-out">Enter your text</p>}
           {errorLanguageSelection && <p className="pt-[20px] text-center text-sm font-medium text-[#F87171] transition-opacity duration-300 ease-in-out">Languages must be different</p>}
       </div>

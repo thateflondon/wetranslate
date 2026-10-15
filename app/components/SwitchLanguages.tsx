@@ -6,7 +6,7 @@ interface SwitchLanguagesProps {
 
 export default function SwitchLanguages({ onSwitch }: SwitchLanguagesProps) {
   return (
-    <button onClick={onSwitch}>
+    <button onClick={onSwitch} className="cursor-pointer transition-all duration-300 hover:brightness-[1.8]">
       <Image
         src="/switch-language.svg"
         alt="switch language"
