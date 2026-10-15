@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
+    console.error("Translation failed", error);
     return NextResponse.json({ error: "Translation failed" }, { status: 500 });
   }
 }

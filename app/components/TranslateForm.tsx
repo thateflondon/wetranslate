@@ -56,6 +56,7 @@ export default function TranslateForm() {
           // return the detected language
           return data.data.detections[0].language;
         } catch (error) {
+          console.error("Detection failed", error);
           return "en";
         }
       };
